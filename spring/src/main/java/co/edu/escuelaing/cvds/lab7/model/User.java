@@ -19,6 +19,8 @@ public class User {
 
     @Column(name = "password", nullable=false)
     private String password;
+	@Column(name = "roles", nullable=false)
+	private List<UserRole> userRoles;
 
     public User(String email, String password, List<UserRole> userRoles) {
 		this.email = email;
@@ -52,8 +54,5 @@ public class User {
 	public void setUserRoles(List<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
-
-	@Column(name = "roles", nullable=false)
-    private List<UserRole> userRoles;
 
 }

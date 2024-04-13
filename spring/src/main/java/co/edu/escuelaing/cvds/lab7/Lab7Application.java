@@ -48,6 +48,7 @@ public class Lab7Application {
 
 			//log.info("\nAdding admin@site.org user with Password: admin");
 			userRepository.save(new User("admin@site.org", "admin", Arrays.asList(UserRole.ADMINISTRADOR, UserRole.CLIENTE)));
+			userRepository.save(new User("admin@site.org", "admi", Arrays.asList(UserRole.ADMINISTRADOR, UserRole.CLIENTE)));
 		};
 	}
 
