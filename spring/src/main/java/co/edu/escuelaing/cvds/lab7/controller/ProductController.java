@@ -32,26 +32,26 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/product")
+    @GetMapping("/product/{id}")
     @ResponseBody
-    public List<Product> apiProduct(@RequestParam(name="id", required=true, defaultValue="1") Integer id) {
-        return (List<Product>) productService.getProduct(id);
+    public Product apiProduct(@PathVariable Integer id) {
+        return productService.getProduct(id);
     }
     @PutMapping("/product")
     @ResponseBody
-    public List<Product> apiProductUpdate(@RequestBody Product product) {
+    public Product apiProductUpdate(@RequestBody Product product) {
         productService.updateProduct(product);
-        return (List<Product>) productService.getProduct(product.getId());
+        return productService.getProduct(product.getId());
     }
     @PatchMapping("/product")
     @ResponseBody
-    public List<Product> apiProductPatch(@RequestBody Product product) {
+    public Product apiProductPatch(@RequestBody Product product) {
         productService.updateProduct(product);
-        return (List<Product>) productService.getProduct(product.getId());
+        return productService.getProduct(product.getId());
     }
-    @DeleteMapping("/product")
+    @DeleteMapping("/product/{id}")
     @ResponseBody
-    public List<Product> apiProductDelete(@RequestParam(name="id", required=true, defaultValue="1") Integer id) {
+    public List<Product> apiProductDelete(@PathVariable Integer id) {
         productService.deleteProduct(id);
         return productService.getAllProducts();
     }
