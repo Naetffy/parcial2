@@ -29,11 +29,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product updateProduct(Product Product) {
-        if (productRepository.findById(Product.getId()).isEmpty()) {
-            return productRepository.save(Product);
+    public Product updateProduct(Product product) {
+        if (productRepository.findById(product.getId()).isPresent()) {
+            return productRepository.save(product);
         }
-
         return null;
     }
 

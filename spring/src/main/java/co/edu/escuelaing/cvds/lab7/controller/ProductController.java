@@ -28,6 +28,9 @@ public class ProductController {
     @PostMapping("/products")
     @ResponseBody
     public List<Product> apiProducts(@RequestBody Product product) {
+        if (product.getRating() > 5 || product.getRating() < 1){
+            return null;
+        }
         productService.addProduct(product);
         return productService.getAllProducts();
     }
@@ -40,8 +43,7 @@ public class ProductController {
     @PutMapping("/product/{id}")
     @ResponseBody
     public Product apiProductUpdate(@PathVariable Integer id,@RequestBody Product product) {
-        productService.updateProduct(product);
-        return productService.getProduct(id);
+        return productService.updateProduct(product);
     }
     @PatchMapping("/product/{id}")
     @ResponseBody
@@ -49,7 +51,7 @@ public class ProductController {
         Product p = productService.getProduct(id);
         System.out.println(product.getPrice());
         productService.updateProduct(product);
-        return productService.getProduct(product.getId());
+        return productService.getProduct(id);
     }
     @DeleteMapping("/product/{id}")
     @ResponseBody
