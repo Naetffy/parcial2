@@ -37,15 +37,17 @@ public class ProductController {
     public Product apiProduct(@PathVariable Integer id) {
         return productService.getProduct(id);
     }
-    @PutMapping("/product")
+    @PutMapping("/product/{id}")
     @ResponseBody
-    public Product apiProductUpdate(@RequestBody Product product) {
+    public Product apiProductUpdate(@PathVariable Integer id,@RequestBody Product product) {
         productService.updateProduct(product);
-        return productService.getProduct(product.getId());
+        return productService.getProduct(id);
     }
-    @PatchMapping("/product")
+    @PatchMapping("/product/{id}")
     @ResponseBody
-    public Product apiProductPatch(@RequestBody Product product) {
+    public Product apiProductPatch(@PathVariable Integer id, @RequestBody Product product) {
+        Product p = productService.getProduct(id);
+        System.out.println(product.getPrice());
         productService.updateProduct(product);
         return productService.getProduct(product.getId());
     }
