@@ -49,7 +49,13 @@ public class ProductController {
     @ResponseBody
     public Product apiProductPatch(@PathVariable Integer id, @RequestBody Product product) {
         Product p = productService.getProduct(id);
-        System.out.println(product.getPrice());
+        product.setId(id);
+        if (product.getName()==null) product.setName(p.getName());
+        if (product.getDescription()==null) product.setDescription(p.getDescription());
+        if (product.getCategory()==null) product.setCategory(p.getCategory());
+        if (product.getRating()==0) product.setRating(p.getRating());
+        if (product.getPrice()==0) product.setPrice(p.getPrice());
+        if (product.getQuantity()==0) product.setQuantity(p.getQuantity());
         productService.updateProduct(product);
         return productService.getProduct(id);
     }
